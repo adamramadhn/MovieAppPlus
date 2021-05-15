@@ -9,7 +9,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "com.dicoding.tourismapp.maps"
+        applicationId "com.adam.movieapp.maps"
         minSdkVersion 16
         targetSdkVersion 30
         versionCode 1
@@ -35,6 +35,7 @@ android {
 
 dependencies {
     implementation project(":core")
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation project(":app")
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.2'

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:dist="http://schemas.android.com/apk/distribution"
-    package="com.dicoding.tourismapp.maps">
+    package="com.adam.movieapp.maps">
 
     <dist:module
         dist:instant="false"
-        dist:title="@string/title_maps">
+        dist:title="@string/title_favorite">
         <dist:delivery>
             <dist:install-time />
         </dist:delivery>
@@ -14,12 +14,12 @@
     </dist:module>
 
     <application>
-        <activity android:name=".MapsActivity">
+        <activity android:name="com.adam.movieapp.maps.FavoriteActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
-                <data android:scheme="tourismapp"
-                    android:host="maps"/>
+                <data android:scheme="movieapp"
+                    android:host="favorite"/>
             </intent-filter>
         </activity>
     </application>
