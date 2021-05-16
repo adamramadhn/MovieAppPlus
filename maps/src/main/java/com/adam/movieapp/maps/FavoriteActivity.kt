@@ -11,6 +11,7 @@ import com.adam.movieapp.maps.databinding.ActivityFavoriteBinding
 import org.koin.android.viewmodel.ext.android.viewModel
 import org.koin.core.context.loadKoinModules
 
+
 class FavoriteActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFavoriteBinding
     private val movieViewModel: MovieViewModel by viewModel()
@@ -19,6 +20,7 @@ class FavoriteActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         loadKoinModules(favoriteModule)
         supportActionBar?.title = "Favorite Movie"
         getFavorite()
@@ -38,7 +40,7 @@ class FavoriteActivity : AppCompatActivity() {
                 if (dataTourism.isNotEmpty()) View.GONE else View.VISIBLE
         })
 
-        with(binding.rvMovieFav) {
+        with(binding.contentFav.rvMovieFav) {
             layoutManager = LinearLayoutManager(context)
             setHasFixedSize(true)
             adapter = movieAdapter

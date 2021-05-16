@@ -24,6 +24,9 @@ data class MovieEntity(
     @ColumnInfo(name = "release_date")
     var release_date: String,
 
+    @ColumnInfo(name = "vote_average")
+    var vote_average: Double,
+
     @ColumnInfo(name = "isFavorite")
     var isFavorite: Boolean = false
 )

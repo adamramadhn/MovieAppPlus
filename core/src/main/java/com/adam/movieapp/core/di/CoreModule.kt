@@ -1,6 +1,10 @@
 package com.adam.movieapp.core.di
 
 import androidx.room.Room
+import com.adam.movieapp.core.data.MovieRepository
+import com.adam.movieapp.core.data.source.local.LocalDataSource
+import com.adam.movieapp.core.data.source.local.room.MovieDatabase
+import com.adam.movieapp.core.data.source.remote.RemoteDataSource
 import com.adam.movieapp.core.data.source.remote.network.ApiService
 import com.adam.movieapp.core.domain.repository.IMovieRepository
 import com.adam.movieapp.core.utils.AppExecutors
@@ -13,11 +17,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 val databaseModule = module {
-    factory { get<com.adam.movieapp.core.data.source.local.room.MovieDatabase>().tourismDao() }
+    factory { get<MovieDatabase>().tourismDao() }
     single {
         Room.databaseBuilder(
             androidContext(),
-            com.adam.movieapp.core.data.source.local.room.MovieDatabase::class.java, "Tourism.db"
+            MovieDatabase::class.java, "Tourism.db"
         ).fallbackToDestructiveMigration().build()
     }
 }
@@ -41,11 +45,11 @@ val networkModule = module {
 }
 
 val repositoryModule = module {
-    single { com.adam.movieapp.core.data.source.local.LocalDataSource(get()) }
-    single { com.adam.movieapp.core.data.source.remote.RemoteDataSource(get()) }
+    single { LocalDataSource(get()) }
+    single { RemoteDataSource(get()) }
     factory { AppExecutors() }
     single<IMovieRepository> {
-        com.adam.movieapp.core.data.MovieRepository(
+       MovieRepository(
             get(),
             get(),
             get()

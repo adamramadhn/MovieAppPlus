@@ -24,9 +24,13 @@
         </activity>
 
         <activity
+            android:parentActivityName=".MainActivity"
             android:name="com.adam.movieapp.detail.DetailMovieActivity"
             android:label="@string/title_activity_detail_home"
             android:theme="@style/Theme.TourismApp.NoActionBar" />
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.adam.movieapp.MainActivity" />
     </application>
 
 </manifest>

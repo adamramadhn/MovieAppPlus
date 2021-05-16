@@ -14,7 +14,8 @@
     </dist:module>
 
     <application>
-        <activity android:name="com.adam.movieapp.maps.FavoriteActivity">
+        <activity android:name="com.adam.movieapp.maps.FavoriteActivity"
+            android:parentActivityName="com.adam.movieapp.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW"/>
                 <category android:name="android.intent.category.DEFAULT"/>
@@ -22,6 +23,9 @@
                     android:host="favorite"/>
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.adam.movieapp.MainActivity" />
     </application>
 
 </manifest>
