@@ -13,8 +13,6 @@
     <string name="something_wrong">Oops.. something went wrong</string>
     <string name="title_favorite">Favorite</string>
     <string name="overview">Overview</string>
-    <string name="watch_trailer">Watch Trailer</string>
     <string name="rating">Rating</string>
     <string name="detail_movie_toolbar">Detail Movie</string>
-    <string name="fav_movie_title">Favorite Movie</string>
 </resources>
