@@ -8,6 +8,8 @@ import com.adam.movieapp.core.data.source.remote.RemoteDataSource
 import com.adam.movieapp.core.data.source.remote.network.ApiService
 import com.adam.movieapp.core.domain.repository.IMovieRepository
 import com.adam.movieapp.core.utils.AppExecutors
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -19,10 +21,12 @@ import java.util.concurrent.TimeUnit
 val databaseModule = module {
     factory { get<MovieDatabase>().tourismDao() }
     single {
+        val passphrase: ByteArray = SQLiteDatabase.getBytes("dicoding".toCharArray())
+        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidContext(),
             MovieDatabase::class.java, "Tourism.db"
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration().openHelperFactory(factory).build()
     }
 }
 
@@ -49,7 +53,7 @@ val repositoryModule = module {
     single { RemoteDataSource(get()) }
     factory { AppExecutors() }
     single<IMovieRepository> {
-       MovieRepository(
+        MovieRepository(
             get(),
             get(),
             get()
